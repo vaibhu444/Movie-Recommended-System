@@ -42,4 +42,8 @@ The system evaluates performance using metrics like:
 ## Results
 The notebook outputs top movie recommendations for individual users and visualizes key metrics to demonstrate model performance.
 
+## Live Demo
+
+[Click Here](https://movie-recommended-system-9spt8it2lckntrkhryjzh6.streamlit.app/)
+
 
