@@ -1,6 +1,8 @@
 import streamlit as st
 import pickle
 import requests
+import gzip
+import zipfile
 
 
 
@@ -13,13 +15,17 @@ def recommend(movie_name):
         recommended_movie_names.append(name)
         recommended_movie_similarity.append(s*100)
     return recommended_movie_names, recommended_movie_similarity
-        
+
+with zipfile.ZipFile('similarity.pkl.zip', 'r') as zipf:
+    with zipf.open('similarity.pkl') as f:
+        similarity = pickle.load(f)
+
+with zipfile.ZipFile('movies_list.pkl.zip', 'r') as zipf:
+    with zipf.open('movies_list.pkl') as f:
+        movies = pickle.load(f)
 
 
 st.header('Movie Recommender System')
-
-movies = pickle.load(open('movies_list.pkl', 'rb'))
-similarity = pickle.load(open('similarity.pkl', 'rb'))
 
 movie_list = movies['title'].values
 selected_movie = st.selectbox(
